@@ -1,0 +1,52 @@
+// algorithm to remove duplicate entries from an array
+// return array that has a single instance of entries
+// using javascript as your language
+Example array[]:
+// inputs: [7, 9, 12, 7, 53]
+// output : [7, 9, 12 ,53]
+// do not use the array.filter() method for your solution
+// do not consider removing duplicate objects from array in solution
+
+function removeDuplicates(array) {
+	let uniqueArray = [];
+  for(let i = 0; i < array.length; i++) {
+		if (uniqueArray.indexOf(array[i]) === -1) {
+			uniqueArray.push(array[i]);      
+      }
+    }
+	return uniqueArray;
+}
+
+let input = [7, 9, 7, 9, 12 ,53];
+let output = removeDuplicates(input);
+output;
+[7, 9, 12, 53]
+
+
+
+// recursion solution talk through at the end:
+removeDuplicatesRecursive(array)
+// base case array has only one or no elements, return array as it is
+if(array.length <=1 )
+	return array;{
+}
+//we check if the first element is duplicated in the array using .includes()
+ if (array.slice(1).includes(array[0]))
+ return removeDuplicatesRecursive(array.slice(1))
+//if it's not a duplicate entry, we recursively call the function
+ } else {
+ return [array[0]].concat(removeDuplicatesRecursive)(array.slice(1))
+ }
+ 
+
+
+------Solution #3: using the filter()!!------------
+
+function removeDuplicates(array) {
+  return array.filter(function(value, index, self) {
+    return self.indexOf(value) === index;
+  });
+}
+let input = [7, 9, "hi", 12, "hi", 7, 53];
+let output = removeDuplicates(input);
+output: [7, 9, 'hi', 12, 53]
