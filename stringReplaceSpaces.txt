@@ -1,0 +1,63 @@
+PROMPT #1
+Turning strings to URL's. URLs cannot have spaces. Instead, all spaces in a string are replaced with %20. Write an algorithm that replaces all spaces in a string with %20.
+You may not use the replace() method or regular expressions to solve this problem. Solve the problem with and without recursion.
+Input: "Jasmine Ann Jones"
+Output: "Jasmine%20Ann%20Jones" 
+
+//--Solution #1, using a For Loop:--
+
+function replaceSpaces(string) {
+  let newString = "";
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === " ") {
+      newString += "%20";
+    } else {
+      newString += string[i];
+    }
+  }
+  return newString;
+}
+
+// possible edge case, input is not a string:
+function replaceSpaces(string) {
+  if (!typeof string === "string") {
+    throw new TypeError("Input must be a string");
+  }
+  let newString = "";
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === " ") {
+      newString += "%20";
+    } else {
+      newString += string[i];
+    }
+  }
+  return newString;
+}
+
+Example result from input to output:
+const string = "Jasmine Ann Jones";
+const newString = replaceSpaces(string);
+newString;
+'Jasmine%20Ann%20Jones'
+
+//--Solution #2, using Recursion:--
+
+function spacesRecursive(string) {
+  if (string === "") {
+    return "";
+  } else {
+    if (string[0] === " ") {
+      return "%20" + spacesRecursive(string.slice(1));
+    } else {
+      return string[0] + spacesRecursive(string.slice(1));
+    }
+  }
+}
+
+Example result from input to output:
+const string = "Jasmine Ann Jones";
+const newString = spacesRecursive(string);
+newString;
+'Jasmine%20Ann%20Jones'
+
+

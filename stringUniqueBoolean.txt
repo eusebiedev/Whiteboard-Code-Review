@@ -1,0 +1,30 @@
+PROMPT #4: Checking for Uniqueness
+Write an algorithm that determines whether all the elements in a string are unique. You may not convert the string into an array or use array methods to solve this problem. The algorithm should return a boolean.
+Example
+Input: "hello"
+Output: false
+Input: "copyright"
+Output: true
+--Solution-- Using Sets to store unique data, and iterating over each character in string:
+
+function areUnique(string) {
+  const char = new Set();
+  for (const character of string) {
+    if (char.has(character)) {
+      return false;
+    }
+    char.add(character);
+  }
+  return true;
+}
+
+const string = "boolean"
+const isUnique = areUnique(string);
+isUnique;
+False
+
+const string2 = "copyright";
+const isUnique2 = areUnique(string2);
+isUnique2;
+True
+
